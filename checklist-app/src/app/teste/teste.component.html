@@ -1,4 +1,5 @@
-<p>{{ stringInterpolation }}</p>
+<!-- Aula 14 -->
+<!-- <p>{{ stringInterpolation }}</p>
 
 <button [disabled]="isDisabled">Botão 2</button>
 <br />
@@ -6,4 +7,21 @@
 <br />
 <label>Input test</label>
 <input [(ngModel)]="myPropertyBinding" />
-<span>{{ myPropertyBinding }}</span>
+<span>{{ myPropertyBinding }}</span> -->
+<div style="margin: 20px; border: 3px solid black">
+  <h1 *ngIf="showTitle" [ngStyle]="{ 'font-weight': 'bold' }">
+    Isso é um teste
+  </h1>
+  <button (click)="changeTitleDisplayStatus()">Exibir titulo</button>
+</div>
+
+<div style="margin: 20px; border: 3px solid black">
+  <ul>
+    <li
+      *ngFor="let item of items"
+      [ngClass]="item.id % 2 ? 'style-1' : 'style-2'"
+    >
+      {{ item.description }}
+    </li>
+  </ul>
+</div>
