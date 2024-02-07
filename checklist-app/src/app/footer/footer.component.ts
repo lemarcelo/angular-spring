@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { MaterialModule } from '../header/material.module';
+import { MaterialModule } from '../material.module';
 
 @Component({
   selector: 'app-footer',
