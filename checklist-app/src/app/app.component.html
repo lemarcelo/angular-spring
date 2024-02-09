@@ -7,16 +7,21 @@
         <mat-list-item>
           <mat-icon>home</mat-icon>
           <span class="ml-15">
-            <a href="/">Home</a>
+            <a [routerLink]="['/']">Home</a>
+          </span>
+        </mat-list-item>
+        <mat-divider />
+        <mat-list-item>
+          <mat-icon>list</mat-icon>
+          <span class="ml-15">
+            <a [routerLink]="['category']">Categoria</a>
           </span>
         </mat-list-item>
       </mat-list>
     </mat-sidenav>
-    <mat-sidenav-content>
+    <mat-sidenav-content class="h-300">
       <router-outlet></router-outlet>
     </mat-sidenav-content>
   </mat-sidenav-container>
-  <router-outlet></router-outlet>
-
   <app-footer></app-footer>
 </div>
