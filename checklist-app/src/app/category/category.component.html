@@ -44,7 +44,9 @@
       <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
     </table>
     <mat-card-actions align="start">
-      <a mat-raised-button color="warn" [routerLink]="['/']">Home</a>
+      <a mat-raised-button color="warn" [routerLink]="['/']" class="mr-10"
+        >Home</a
+      >
       <a mat-raised-button color="primary" (click)="createNewCategory()"
         >Criar Nova Categoria</a
       >

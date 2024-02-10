@@ -20,3 +20,12 @@ w-10p{
 .mr-10{
   margin-right: 10px;
 }
+.flx-cnter-row{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.flx-evly{
+  justify-content: space-evenly;
+}
