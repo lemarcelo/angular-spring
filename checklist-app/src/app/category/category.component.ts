@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { RouterModule } from '@angular/router';
 import { Category } from '../_models/category';
+import { DialogComponent } from '../dialog/dialog.component';
 import { MaterialModule } from '../material.module';
 
 const CATEGORY_DATA =[
@@ -18,6 +20,11 @@ const CATEGORY_DATA =[
 })
 export class CategoryComponent {
 
+  constructor(private dialog: MatDialog){
+
+
+  }
+
   displayedColumns: string[] = ['id', 'name', 'actions'];
   dataSource: Category[]=CATEGORY_DATA;
 
@@ -26,9 +33,18 @@ export class CategoryComponent {
     console.log('Edit new category clicked')
   }
   public deleteCategory(category: Category) {
-    console.log('Delete new category clicked')}
+    this.dialog.open(DialogComponent, {disabledClose: true, }).afterClosed().subscribe(
+    resp => {
+      if(resp) console.log('Categoria apagada com sucesso!');
+    }else{
+      if(resp) console.log('Categoria não apagada');
+    }
+  )
+}
+
+
 
   createNewCategory() {
     console.log('create new category clicked')
-    }
+  }
 }
