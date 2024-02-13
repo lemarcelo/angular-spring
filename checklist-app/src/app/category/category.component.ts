@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { RouterModule } from '@angular/router';
 import { Category } from '../_models/category';
+import { CategoryEditComponent } from '../category-edit/category-edit.component';
 import { MaterialModule } from '../material.module';
 import { DialogComponent } from './../dialog/dialog.component';
 
@@ -25,8 +26,19 @@ export class CategoryComponent {
   displayedColumns: string[] = ['id', 'name', 'actions'];
   dataSource: Category[]=CATEGORY_DATA;
 
-  public editCategory(category: Category) {
-    console.log('Edit new category clicked')
+  public editCategory(inputCategory: Category) {
+
+    this.dialog.open(CategoryEditComponent, {disableClose: true,
+      data: {editableCategory: inputCategory}}).afterClosed().subscribe(
+      resp => {
+        if(resp){
+          console.log('Categoria Salva com sucesso!');
+      }else{
+          console.log('Alterações descartadas!');
+        }
+      }
+    )
+
   }
 
   public deleteCategory(category: Category) {
