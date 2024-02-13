@@ -21,7 +21,7 @@ w-10p{
   margin-right: 10px;
 }
 .flx-cnter-row{
-  display: flex;
+  display: flex !important;
   flex-direction: row;
   align-items: center;
 }
