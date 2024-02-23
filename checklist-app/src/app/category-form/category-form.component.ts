@@ -25,7 +25,7 @@ export class CategoryFormComponent {
   }
 
   cancel() {
-    console.log("Cancelare Clicado");
+    console.log("Cancelar Clicado");
   }
 
   save() {
