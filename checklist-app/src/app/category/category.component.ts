@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { RouterModule } from '@angular/router';
 import { Category } from '../_models/category';
+import { CategoryEditComponent } from '../category-edit/category-edit.component';
 import { MaterialModule } from '../material.module';
 import { DialogComponent } from './../dialog/dialog.component';
 
@@ -25,21 +26,23 @@ export class CategoryComponent {
   displayedColumns: string[] = ['id', 'name', 'actions'];
   dataSource: Category[]=CATEGORY_DATA;
 
-  public editCategory(category: Category) {
-    console.log('Edit new category clicked')
+  public editCategory(inputCategory: Category) {
+    this.dialog.open(CategoryEditComponent, {disableClose: true, data: {
+      editableCategory: inputCategory
+    }}).afterClosed().subscribe(resp => {
+          console.log('Categoria não apagada!');
+        }
+    )
+
   }
 
   public deleteCategory(category: Category) {
 
-    this.dialog.open(DialogComponent, {disableClose: true,
-      data: {dialogMsg:'Você tem certeza que gostaria de apagar a categoria?', leftButtonLabel:'Cancelar', rightButtonLabel:'Sim'}}).afterClosed().subscribe(
-      resp => {
-        if(resp){
-          console.log('Categoria apagada com sucesso!');
-      }else{
+    this.dialog.open(DialogComponent, {disableClose: true, data: {
+      msg:'Você tem certeza que gostaria de apagar a categoria?', leftButtonLabel:'Cancelar', rightButtonLabel:'Ok'
+    }}).afterClosed().subscribe(resp => {
           console.log('Categoria não apagada!');
         }
-      }
     )
 
   }
