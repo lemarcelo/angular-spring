@@ -1,1 +1,7 @@
-<app-category-form></app-category-form>
+<app-category-form
+  [actionName="actionName"
+  ]
+  [editableCategory="editableCategory"
+  ]
+  (closeModalEventEmitter)="closeModelWindow($event)"
+></app-category-form>

@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Category } from '../_models/category';
 import { MaterialModule } from '../material.module';
 
 
@@ -12,12 +13,12 @@ import { MaterialModule } from '../material.module';
 })
 export class CategoryFormComponent {
 
-  public actionName="Editar";
+  @Input() public actionName="Editar";
 
   public categoryForm: FormGroup;
-  /**
-   *
-   */
+
+  @Input() public editableCategory!: Category;
+
   constructor(private formBuilder: FormBuilder) {
     this.categoryForm = this.formBuilder.group({
       name: 'Aluno'

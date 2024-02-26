@@ -1,5 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { Category } from '../_models/category';
 import { CategoryFormComponent } from "../category-form/category-form.component";
 
 @Component({
@@ -11,5 +12,16 @@ import { CategoryFormComponent } from "../category-form/category-form.component"
 })
 export class CategoryEditComponent {
 
-constructor(private dialogRef: MatDialogRef<CategoryEditComponent>, @Inject(MAT_DIALOG_DATA) dialogData: any) { }
+  public editableCategory!: Category;
+  public actionName: string = 'Editar';
+
+
+constructor(private dialogRef: MatDialogRef<CategoryEditComponent>, @Inject(MAT_DIALOG_DATA) dialogData: any) {
+    if(dialogData.editableCategory!=null){
+      this.editableCategory = dialogData.editableCategory;
+    }
+  }
+  public closeModalWindow($event:any){
+    if($event) this.dialogRef.close();
+  }
 }
