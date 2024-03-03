@@ -12,6 +12,7 @@ import { CategoryFormComponent } from "../category-form/category-form.component"
 })
 export class CategoryEditComponent {
 
+
   public editableCategory!: Category;
   public actionName: string = 'Editar';
 
@@ -22,6 +23,7 @@ constructor(private dialogRef: MatDialogRef<CategoryEditComponent>, @Inject(MAT_
     }
   }
   public closeModalWindow($event:any){
+    //TODO: handle action - save/update
     if($event) this.dialogRef.close();
   }
 }

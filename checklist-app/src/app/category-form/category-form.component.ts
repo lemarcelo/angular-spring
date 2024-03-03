@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Category } from '../_models/category';
 import { MaterialModule } from '../material.module';
@@ -17,6 +17,8 @@ export class CategoryFormComponent {
 
   public categoryForm: FormGroup;
 
+  @Output() public closeModalEventEmitter: EventEmitter<boolean> = new EventEmitter<boolean>();
+
   @Input() public editableCategory!: Category;
 
   constructor(private formBuilder: FormBuilder) {
@@ -27,10 +29,12 @@ export class CategoryFormComponent {
 
   cancel() {
     console.log("Cancelar Clicado");
+    this.closeModalEventEmitter.emit(false);
   }
 
   save() {
     console.log("Save Clicado");
+    this.closeModalEventEmitter.emit(true);
   }
 
 }
