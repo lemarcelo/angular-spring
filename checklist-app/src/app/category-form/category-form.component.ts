@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Category } from '../_models/category';
 import { MaterialModule } from '../material.module';
@@ -11,21 +11,27 @@ import { MaterialModule } from '../material.module';
   templateUrl: './category-form.component.html',
   styleUrl: './category-form.component.css'
 })
-export class CategoryFormComponent {
+export class CategoryFormComponent implements OnInit{
 
   @Input() public actionName="Editar";
 
-  public categoryForm: FormGroup;
+  public categoryForm!: FormGroup;
 
   @Output() public closeModalEventEmitter: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   @Input() public editableCategory!: Category;
 
   constructor(private formBuilder: FormBuilder) {
+  }
+
+  ngOnInit(): void{
     this.categoryForm = this.formBuilder.group({
-      name: 'Aluno'
+      name: this.editableCategory != null?this.editableCategory.name: ''
     });
   }
+
+
+
 
   cancel() {
     console.log("Cancelar Clicado");
