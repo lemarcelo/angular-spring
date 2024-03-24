@@ -21,6 +21,9 @@ constructor(private dialogRef: MatDialogRef<CategoryEditComponent>, @Inject(MAT_
     if(dialogData.editableCategory!=null){
       this.editableCategory = dialogData.editableCategory;
     }
+    if(dialogData.actionName != null){
+      this.actionName = dialogData.actionName;
+    }
   }
   public closeModalWindow($event:any){
     //TODO: handle action - save/update

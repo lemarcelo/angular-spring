@@ -6,7 +6,7 @@ import { CategoryEditComponent } from '../category-edit/category-edit.component'
 import { MaterialModule } from '../material.module';
 import { DialogComponent } from './../dialog/dialog.component';
 
-const CATEGORY_DATA =[
+export const CATEGORY_DATA =[
   {name: 'Educação', guid: 'aaa-bbb-ccc-ddd'},
   {name: 'Saúde', guid: 'aaa-bbb-ccc-ddd'},
   {name: 'Trabalho', guid: 'aaa-bbb-ccc-ddd'},
@@ -30,9 +30,8 @@ export class CategoryComponent {
     this.dialog.open(CategoryEditComponent, {disableClose: true, data: {
       editableCategory: inputCategory
     }}).afterClosed().subscribe(resp => {
-          console.log('Categoria não apagada!');
-        }
-    )
+          console.log('Modal editar fechada');
+        });
 
   }
 
@@ -50,6 +49,9 @@ export class CategoryComponent {
 
 
   createNewCategory() {
-    console.log('create new category clicked')
-  }
+    this.dialog.open(CategoryEditComponent, {disableClose: true, data: {
+      actionName: "Criar"
+    }}).afterClosed().subscribe(resp => {
+          console.log('Modal criar fechada');
+        });  }
 }
