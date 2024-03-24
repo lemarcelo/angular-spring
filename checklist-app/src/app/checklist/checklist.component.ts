@@ -1,9 +1,11 @@
 import { DatePipe } from '@angular/common';
 import { Component } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { RouterLink, RouterOutlet } from '@angular/router';
 import { ChecklistItem } from '../_models/checklist_item';
 import { CATEGORY_DATA } from '../category/category.component';
+import { ChecklistEditComponent } from '../checklist-edit/checklist-edit.component';
 import { DialogComponent } from '../dialog/dialog.component';
 import { MaterialModule } from '../material.module';
 
@@ -20,7 +22,7 @@ export const CHECKLIST_DATA=[
 @Component({
   selector: 'app-checklist',
   standalone: true,
-  imports: [RouterOutlet, MaterialModule, RouterLink, DatePipe],
+  imports: [RouterOutlet, MaterialModule, RouterLink, DatePipe, FormsModule, ReactiveFormsModule],
   templateUrl: './checklist.component.html',
   styleUrl: './checklist.component.css'
 })
@@ -30,14 +32,9 @@ export class ChecklistComponent {
 
   public displayedColumns: string[] = ['id', 'completed', 'description', 'deadLine', 'postDate', 'category', 'actions'];
 
-  constructor(private dialog: MatDialog){}
+constructor(private dialog: MatDialog) {}
 
-  public createNewItem() {
-    console.log('Criar novo item do checklist clicado!');
-  }
-
-
-  public updateCompleteStatus(status: boolean) {
+    updateCompleteStatus(status: boolean) {
     if(status){
       console.log('verdadeiro');
     }else{
@@ -45,9 +42,21 @@ export class ChecklistComponent {
     }
     }
 
+    createNewItem() {
+      this.dialog.open(ChecklistEditComponent, {
+        disableClose: true, data:{actionName: 'Criar'},
+      }).afterClosed().subscribe(resp =>{
+        console.log('Fechando modal de criação');
+      })
+    }
+
     updateChecklistItem(checklist: ChecklistItem) {
-      console.log('Editando')
-      }
+      this.dialog.open(ChecklistEditComponent, {
+        disableClose: true, data: {updatableCkecklistItem: ChecklistItem,  actionName: 'Editar'}
+      }).afterClosed().subscribe(resp=>{
+        console.log('Fechando modal de edição')
+      })
+    }
 
     deleteChecklistItem(checklist: ChecklistItem) {
       this.dialog.open(DialogComponent, {disableClose: true,
@@ -57,9 +66,6 @@ export class ChecklistComponent {
        })
 
       }
-
-
-
 
 
 }
