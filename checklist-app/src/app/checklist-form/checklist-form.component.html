@@ -10,13 +10,39 @@
           <mat-form-field appearance="outline">
             <mat-label>Descrição</mat-label>
             <input matInput type="text" formControlName="description" />
-
             <mat-error
-              @if(checklistForm?.controls?.description?.errors?.required)
-              >Descrição é obrigatório!</mat-error
+              @if(checklisForm?.controls?.description?.errors?.required)
+              >Descrição é obrigatória!</mat-error
             >
           </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Categoria</mat-label>
+            <mat-select formControlName="category">
+              @for (category of categories; track category) {
+              <mat-option [value]="category.name">{{
+                category.name
+              }}</mat-option>
+              }
+            </mat-select>
+            <mat-error
+            @if(checklisForm?.controls?.category?.errors?.required)
+            >Categoria é obrigatória!</mat-error>
+          </mat-form-field>
+        <div>
+          <section>
+            <mat-checkbox formControlName="category" >Concluído</mat-checkbox>
+          </section>
+
+          <mat-form-field>
+            <mat-label>Prazo</mat-label>
+            <input matInput [matDatepicker]="picker" formControlName="deadline" title="Prazo"/>
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+
         </div>
+      </div>
       </form>
     </mat-card-content>
     <mat-card-actions>
