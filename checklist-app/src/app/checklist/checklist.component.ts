@@ -52,7 +52,7 @@ constructor(private dialog: MatDialog) {}
 
     updateChecklistItem(checklist: ChecklistItem) {
       this.dialog.open(ChecklistEditComponent, {
-        disableClose: true, data: {updatableCkecklistItem: ChecklistItem,  actionName: 'Editar'}
+        disableClose: true, data: {updatableChecklistItem: ChecklistItem,  actionName: 'Editar'}
       }).afterClosed().subscribe(resp=>{
         console.log('Fechando modal de edição')
       })
