@@ -31,7 +31,7 @@ export class ChecklistFormComponent {
       {
         completed: [this.checklistItem != null ?this.checklistItem.completed: false, Validators.required],
         description: [this.checklistItem != null ? this.checklistItem.description: '', Validators.required],
-        deadline: [this.checklistItem != null ? this.checklistItem.deadLine: new Date(), Validators.required],
+        deadLine: [this.checklistItem != null ? this.checklistItem.deadLine: new Date(), Validators.required],
         category: [this.checklistItem != null ? this.checklistItem.category: null, Validators.required],
       }
     )
