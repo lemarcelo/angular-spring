@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
-import { ChecklistItem } from '../_models/checklist_item';
+import { Component, Inject } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { ChecklistFormComponent } from "../checklist-form/checklist-form.component";
+import { ChecklistItem } from './../_models/checklist_item';
 
 @Component({
     selector: 'app-checklist-edit',
@@ -10,10 +11,20 @@ import { ChecklistFormComponent } from "../checklist-form/checklist-form.compone
     imports: [ChecklistFormComponent]
 })
 export class ChecklistEditComponent {
-
   public actionName='Editar';
   public checklistItem!: ChecklistItem;
 
+
+  constructor(public dialogRef: MatDialogRef<ChecklistEditComponent>, @Inject(MAT_DIALOG_DATA) data: any){
+    if(data.updatableChecklistItem != null){
+      this.checklistItem = data.updatableChecklistItem;
+    }
+    if(data.actionName !=null){
+      this.actionName = data.actionName ;
+    }
+   }
+
   public onFormClose($event: any){
+  this.dialogRef.close();
   }
 }

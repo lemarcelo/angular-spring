@@ -5,7 +5,7 @@
     </mat-card-header>
 
     <mat-card-content>
-      <form [formGroup]="checklistForm" #FormDirective="ngForm">
+      <form [formGroup]="checklistForm" #FormDirective="ngForm" class="flx-clmn">
         <div>
           <mat-form-field appearance="outline">
             <mat-label>Descrição</mat-label>
@@ -29,14 +29,14 @@
             @if(checklisForm?.controls?.category?.errors?.required)
             >Categoria é obrigatória!</mat-error>
           </mat-form-field>
-        <div>
+        <div class="flx-cnter-row flx-evly">
           <section>
             <mat-checkbox formControlName="category" >Concluído</mat-checkbox>
           </section>
 
           <mat-form-field>
             <mat-label>Prazo</mat-label>
-            <input matInput [matDatepicker]="picker" formControlName="deadline" title="Prazo"/>
+            <input matInput [matDatepicker]="picker" formControlName="deadLine" title="Prazo"/>
             <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
           </mat-form-field>

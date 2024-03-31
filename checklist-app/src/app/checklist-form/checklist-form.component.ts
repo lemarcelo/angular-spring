@@ -43,12 +43,11 @@ export class ChecklistFormComponent {
   }
 
   save() {
-    this.clearForm();
+    this.formCloseEvent.emit(true);
+
   }
   cancel() {
+    this.formCloseEvent.emit(false);
   }
 
-
-  public onFormClose(){
-  }
 }
