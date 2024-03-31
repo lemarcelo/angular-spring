@@ -1,0 +1,53 @@
+import { CommonModule } from '@angular/common';
+import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
+import { FormBuilder, FormGroup, FormGroupDirective, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Category } from '../_models/category';
+import { ChecklistItem } from '../_models/checklist_item';
+import { CATEGORY_DATA } from '../category/category.component';
+import { MaterialModule } from '../material.module';
+
+@Component({
+  selector: 'app-checklist-form',
+  standalone: true,
+  imports: [MaterialModule, FormsModule, ReactiveFormsModule, CommonModule],
+  templateUrl: './checklist-form.component.html',
+  styleUrl: './checklist-form.component.css'
+})
+export class ChecklistFormComponent {
+  @Input() public actionName='Editar';
+  @Input() checklistItem!: ChecklistItem;
+  @Output() public formCloseEvent: EventEmitter<boolean> = new EventEmitter<boolean>();
+
+  @ViewChild(FormGroupDirective) checklistFormGroupDirective!: FormGroupDirective;
+
+  public categories: Category[] = CATEGORY_DATA;
+
+  public checklistForm!: FormGroup;
+
+  constructor(private formBuilder: FormBuilder) {}
+
+  ngOnInit(): void{
+    this.checklistForm = this.formBuilder.group(
+      {
+        completed: [this.checklistItem != null ?this.checklistItem.completed: false, Validators.required],
+        description: [this.checklistItem != null ? this.checklistItem.description: '', Validators.required],
+        deadLine: [this.checklistItem != null ? this.checklistItem.deadLine: new Date(), Validators.required],
+        category: [this.checklistItem != null ? this.checklistItem.category: null, Validators.required],
+      }
+    )
+  }
+
+  private clearForm(){
+    this.checklistForm.reset();
+    this.checklistFormGroupDirective.resetForm();
+  }
+
+  save() {
+    this.formCloseEvent.emit(true);
+
+  }
+  cancel() {
+    this.formCloseEvent.emit(false);
+  }
+
+}
