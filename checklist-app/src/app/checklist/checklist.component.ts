@@ -11,11 +11,11 @@ import { MaterialModule } from '../material.module';
 
 export const CHECKLIST_DATA=[
   {
-    guid: 'aaa-bbb-ccc-ddd', completed: false, description: 'Ir ao oftalmologista', deadLine: Date.now(), postDate: Date.now(),
+    guid: 'aaa-bbb-ccc-ddd', completed: false, description: 'Ir ao oftalmologista', deadline: Date.now(), postDate: Date.now(),
     category: CATEGORY_DATA.find(x => x.name =='Saúde')
   },
   {
-    guid: 'aaa-bbb-ccc-eee', completed: true, description: 'Reunião com o gerente gerional', deadLine: Date.now(), postDate: Date.now(),
+    guid: 'aaa-bbb-ccc-eee', completed: true, description: 'Reunião com o gerente gerional', deadline: Date.now(), postDate: Date.now(),
     category: CATEGORY_DATA.find(x => x.name =='Trabalho')
   }
 ]
@@ -30,7 +30,7 @@ export class ChecklistComponent {
 
   public datasource= CHECKLIST_DATA;
 
-  public displayedColumns: string[] = ['id', 'completed', 'description', 'deadLine', 'postDate', 'category', 'actions'];
+  public displayedColumns: string[] = ['id', 'completed', 'description', 'deadline', 'postDate', 'category', 'actions'];
 
 constructor(private dialog: MatDialog) {}
 
@@ -52,7 +52,7 @@ constructor(private dialog: MatDialog) {}
 
     updateChecklistItem(checklist: ChecklistItem) {
       this.dialog.open(ChecklistEditComponent, {
-        disableClose: true, data: {updatableCkecklistItem: ChecklistItem,  actionName: 'Editar'}
+        disableClose: true, data: {updatableChecklistItem: ChecklistItem,  actionName: 'Editar'}
       }).afterClosed().subscribe(resp=>{
         console.log('Fechando modal de edição')
       })
