@@ -17,8 +17,7 @@
           </mat-form-field>
 
           <mat-form-field appearance="outline">
-            <mat-label>Categoria</mat-label>
-            <mat-select formControlName="category">
+            <mat-select placeholder="Categoria" formControlName="category">
               @for (category of categories; track category) {
               <mat-option [value]="category.name">{{
                 category.name
@@ -35,8 +34,7 @@
           </section>
 
           <mat-form-field>
-            <mat-label>Prazo</mat-label>
-            <input matInput [matDatepicker]="picker" formControlName="deadLine" title="Prazo"/>
+            <input matInput [matDatepicker]="picker" placeholder="Prazo" formControlName="deadline" title="Prazo"/>
             <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
           </mat-form-field>

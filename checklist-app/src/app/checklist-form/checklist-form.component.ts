@@ -29,10 +29,10 @@ export class ChecklistFormComponent {
   ngOnInit(): void{
     this.checklistForm = this.formBuilder.group(
       {
-        completed: [this.checklistItem != null ?this.checklistItem.completed: false, Validators.required],
+        completed: [this.checklistItem != null ? this.checklistItem.completed: false, Validators.required],
         description: [this.checklistItem != null ? this.checklistItem.description: '', Validators.required],
-        deadLine: [this.checklistItem != null ? new Date(this.checklistItem.deadLine): new Date(), Validators.required],
-        category: [this.checklistItem != null ? this.checklistItem.category: null, Validators.required],
+        deadline: [this.checklistItem != null ? new Date(this.checklistItem.deadline): new Date(), Validators.required],
+        category: [this.checklistItem != null ? this.checklistItem.category: null, Validators.required]
       }
     )
   }
