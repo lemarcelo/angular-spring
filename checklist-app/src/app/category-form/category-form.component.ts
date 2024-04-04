@@ -34,9 +34,6 @@ export class CategoryFormComponent implements OnInit{
     this.isFormReady=true;
   }
 
-
-
-
   cancel() {
     console.log("Cancelar Clicado");
     this.closeModalEventEmitter.emit(false);
