@@ -7,6 +7,6 @@ export class ChecklistItem{
   public deadline!: Date;
   public postDate!: Date;
   public category!: Category;
-
+//teste
 
 }
