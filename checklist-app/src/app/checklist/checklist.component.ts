@@ -50,15 +50,15 @@ constructor(private dialog: MatDialog) {}
       })
     }
 
-    updateChecklistItem(checklist: ChecklistItem) {
+    updateChecklistItem(checklistItem: ChecklistItem) {
       this.dialog.open(ChecklistEditComponent, {
-        disableClose: true, data: {updatableChecklistItem: ChecklistItem,  actionName: 'Editar'}
+        disableClose: true, data: {updatableChecklistItem: checklistItem,  actionName: 'Editar'}
       }).afterClosed().subscribe(resp=>{
         console.log('Fechando modal de edição')
       })
     }
 
-    deleteChecklistItem(checklist: ChecklistItem) {
+    deleteChecklistItem(checklistItem: ChecklistItem) {
       this.dialog.open(DialogComponent, {disableClose: true,
         data: { msg:'Você deseja realmente apagar este item?', leftButtonLabel:'Cancelar', rightbuttonLabel: 'Ok'}
        }).afterClosed().subscribe(resp =>{
