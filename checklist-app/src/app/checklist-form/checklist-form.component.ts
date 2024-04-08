@@ -18,13 +18,18 @@ export class ChecklistFormComponent {
   @Input() checklistItem!: ChecklistItem;
   @Output() public formCloseEvent: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-  @ViewChild(FormGroupDirective) checklistFormGroupDirective!: FormGroupDirective;
+
+  @ViewChild(FormGroupDirective) public checklistFormDirective!: FormGroupDirective;
 
   public categories: Category[] = CATEGORY_DATA;
 
   public checklistForm!: FormGroup;
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(private formBuilder: FormBuilder) {
+
+
+  }
+
 
   ngOnInit(): void{
     this.checklistForm = this.formBuilder.group(
@@ -33,13 +38,15 @@ export class ChecklistFormComponent {
         description: [this.checklistItem != null ? this.checklistItem.description: '', Validators.required],
         deadline: [this.checklistItem != null ? new Date(this.checklistItem.deadline): new Date(), Validators.required],
         category: [this.checklistItem != null ? this.checklistItem.category: null, Validators.required]
-      }
-    )
+
+
+      });
+      console.log(''+this.checklistItem.description);
+
   }
 
   private clearForm(){
     this.checklistForm.reset();
-    this.checklistFormGroupDirective.resetForm();
   }
 
   save() {

@@ -5,7 +5,10 @@
     </mat-card-header>
 
     <mat-card-content>
-      <form [formGroup]="checklistForm" #FormDirective="ngForm" class="flx-clmn">
+      <form
+      [formGroup]="checklistForm"
+      #checklistFormDirective="ngForm"
+      class="flx-clmn">
         <div>
           <mat-form-field appearance="outline">
             <mat-label>Descrição</mat-label>

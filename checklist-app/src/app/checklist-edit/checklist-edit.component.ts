@@ -15,9 +15,10 @@ export class ChecklistEditComponent {
   public checklistItem!: ChecklistItem;
 
 
-  constructor(public dialogRef: MatDialogRef<ChecklistEditComponent>, @Inject(MAT_DIALOG_DATA) data: any){
+  constructor(public dialogRef: MatDialogRef<ChecklistEditComponent>, @Inject(MAT_DIALOG_DATA) public data: any){
     if(data.updatableChecklistItem != null){
       this.checklistItem = data.updatableChecklistItem;
+      console.log('Veio com dados!');
     }
     if(data.actionName !=null){
       this.actionName = data.actionName ;
