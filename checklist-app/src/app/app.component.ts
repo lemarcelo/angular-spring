@@ -11,11 +11,16 @@ import { MaterialModule } from './material.module';
     standalone: true,
     templateUrl: './app.component.html',
     styleUrl: './app.component.css',
-    imports: [RouterOutlet, CategoryComponent, HeaderComponent, FooterComponent, MaterialModule, RouterLink, ChecklistComponent]
+    imports: [RouterOutlet, CategoryComponent, HeaderComponent, FooterComponent, MaterialModule, RouterLink, ChecklistComponent],
+
 })
+
 export class AppComponent {
 
   public events: string[] = [];
   public opened=false;
 
+  constructor() {
+
+  }
 }

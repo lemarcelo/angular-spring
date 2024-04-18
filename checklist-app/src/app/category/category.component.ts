@@ -4,14 +4,10 @@ import { RouterModule } from '@angular/router';
 import { Category } from '../_models/category';
 import { CategoryEditComponent } from '../category-edit/category-edit.component';
 import { MaterialModule } from '../material.module';
+import { CategoryService } from '../service/category.service';
 import { DialogComponent } from './../dialog/dialog.component';
 
-export const CATEGORY_DATA =[
-  {name: 'Educação', guid: 'aaa-bbb-ccc-ddd'},
-  {name: 'Saúde', guid: 'aaa-bbb-ccc-ddd'},
-  {name: 'Trabalho', guid: 'aaa-bbb-ccc-ddd'},
-  {name: 'Outros', guid: 'aaa-bbb-ccc-ddd'},
-];
+
 @Component({
   selector: 'app-category',
   standalone: true,
@@ -21,10 +17,18 @@ export const CATEGORY_DATA =[
 })
 export class CategoryComponent {
 
-  constructor(private dialog: MatDialog){}
+  constructor(private dialog: MatDialog, private categoryService: CategoryService){}
+
+  ngOnInit(): void {
+    this.categoryService.getAllCategories().subscribe(
+      (resp: Category[]) =>{
+        this.dataSource = resp;
+      }
+    )
+  }
 
   displayedColumns: string[] = ['id', 'name', 'actions'];
-  dataSource: Category[]=CATEGORY_DATA;
+  dataSource: Category[]=[];
 
   public editCategory(inputCategory: Category) {
     this.dialog.open(CategoryEditComponent, {disableClose: true, data: {
@@ -32,7 +36,6 @@ export class CategoryComponent {
     }}).afterClosed().subscribe(resp => {
           console.log('Modal editar fechada');
         });
-
   }
 
   public deleteCategory(category: Category) {

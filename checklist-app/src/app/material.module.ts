@@ -1,5 +1,6 @@
-import { CommonModule } from '@angular/common';
-import { NgModule } from '@angular/core';
+import { CommonModule, registerLocaleData } from '@angular/common';
+import localePt from '@angular/common/locales/pt';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -14,7 +15,8 @@ import { MatSelect, MatSelectModule } from '@angular/material/select';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
-
+import { AppComponent } from './app.component';
+registerLocaleData(localePt);
 
 
 @NgModule({
@@ -54,6 +56,14 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     MatSelectModule,
     MatSidenavModule,
     MatCheckboxModule
-  ]
+  ],
+  providers:[
+    { provide: LOCALE_ID, useValue: 'pt-BR'}
+  ],
+  bootstrap:[AppComponent]
 })
+
+
+
+
 export class MaterialModule { }
