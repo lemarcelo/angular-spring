@@ -5,6 +5,7 @@ import { Category } from '../_models/category';
 import { CategoryEditComponent } from '../category-edit/category-edit.component';
 import { MaterialModule } from '../material.module';
 import { CategoryService } from '../service/category.service';
+import { SnackBarService } from '../service/snack-bar.service';
 import { DialogComponent } from './../dialog/dialog.component';
 
 
@@ -17,7 +18,7 @@ import { DialogComponent } from './../dialog/dialog.component';
 })
 export class CategoryComponent {
 
-  constructor(private dialog: MatDialog, private categoryService: CategoryService){}
+  constructor(private dialog: MatDialog, private categoryService: CategoryService, private snackBarService: SnackBarService){}
 
   ngOnInit(): void {
     this.categoryService.getAllCategories().subscribe(
@@ -35,6 +36,9 @@ export class CategoryComponent {
       editableCategory: inputCategory
     }}).afterClosed().subscribe(resp => {
           console.log('Modal editar fechada');
+          if(resp){
+            this.snackBarService.showSnackBar('Categoria editada com sucesso!', 'Ok');
+          }
         });
   }
 
@@ -43,10 +47,12 @@ export class CategoryComponent {
     this.dialog.open(DialogComponent, {disableClose: true, data: {
       msg:'Você tem certeza que gostaria de apagar a categoria?', leftButtonLabel:'Cancelar', rightButtonLabel:'Ok'
     }}).afterClosed().subscribe(resp => {
-          console.log('Categoria não apagada!');
-        }
-    )
 
+      console.log('Categoria não apagada!');
+      if(resp){
+        this.snackBarService.showSnackBar('Categoria apagada com sucesso!', 'Ok');
+      }
+    })
   }
 
 
@@ -56,5 +62,9 @@ export class CategoryComponent {
       actionName: "Criar"
     }}).afterClosed().subscribe(resp => {
           console.log('Modal criar fechada');
+
+          if(resp){
+            this.snackBarService.showSnackBar('Categoria criada com sucesso!', 'Ok');
+          }
         });  }
 }

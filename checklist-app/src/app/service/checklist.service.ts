@@ -19,7 +19,6 @@ export const CHECKLIST_DATA=[
 export class ChecklistService {
 
 
-
   constructor() { }
 
   public getAllChecklistItems(): Observable<ChecklistItem[]>{

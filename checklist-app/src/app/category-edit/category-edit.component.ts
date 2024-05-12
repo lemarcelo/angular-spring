@@ -26,7 +26,8 @@ constructor(private dialogRef: MatDialogRef<CategoryEditComponent>, @Inject(MAT_
     }
   }
   public closeModalWindow($event:any){
+
     //TODO: handle action - save/update
-    if($event) this.dialogRef.close();
+    if($event) this.dialogRef.close(event);
   }
 }
