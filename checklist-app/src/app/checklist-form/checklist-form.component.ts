@@ -5,7 +5,7 @@ import { FormBuilder, FormGroup, FormGroupDirective, FormsModule, ReactiveFormsM
 import { Category } from '../_models/category';
 import { ChecklistItem } from '../_models/checklist_item';
 import { MaterialModule } from '../material.module';
-import { CategoryService } from '../service/category.service';
+import { CATEGORY_DATA, CategoryService } from '../service/category.service';
 
 @Component({
   selector: 'app-checklist-form',
@@ -25,7 +25,7 @@ export class ChecklistFormComponent {
 
   @ViewChild(FormGroupDirective) public checklistFormDirective!: FormGroupDirective;
 
-  public categories: Category[] = [];
+  public categories: Category[] = CATEGORY_DATA;
 
   public checklistForm!: FormGroup;
 

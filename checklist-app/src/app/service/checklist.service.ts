@@ -8,7 +8,7 @@ export const CHECKLIST_DATA=[
     category: {guid: 'aaa-bbb-ccc-ddd', name: 'Saúde'}
   },
   {
-    guid: 'aaa-bbb-ccc-eee', completed: true, description: 'Reunião com o gerente gerional', deadline: new Date(), postDate: new Date(),
+    guid: 'aaa-bbb-ccc-eee', completed: true, description: 'Reunião com o gerente regional', deadline: new Date(), postDate: new Date(),
     category: {guid: 'aaa-bbb-ccc-ddd', name: 'Trabalho'}
   }
 ]
